@@ -131,9 +131,9 @@ def Simplex(tableau, w):
                                         new_tableau[z][x] = new_tableau_value_calc(smallest_column[z], new_tableau[chosen_row][x],tableau[z][x])
                                         x += 1 
                               z = z + 1
+                    print("\n")
                     print("step[" + str(w) + "]")
                     print(new_tableau)
-                    print("\n")
                     return 1
           
 
@@ -142,9 +142,10 @@ tableau = []
 print("\n#--------WELCOME TO THE SIMPLEX CALCULATOR-----------#\n")
 print("Instructions")
 print("============")
-print("1. The  LAST expression entered is the objective expression")
-print("2. You may enter as many expressions as you wish")
-print("3. When asked in the program, y = yes n = no")
+print("1. You may enter as many st expressions as you wish")
+print("2. When asked in the program, y = yes n = no to enter st expressions(constraints)")
+print("3. You will be prompted to enter the objective expression last")
+
 print("\n")
 
 b_count = 1
@@ -153,11 +154,11 @@ c_count = 1
 
 while True:
           try: 
-                    val = input("Add another st expression [y or n]: ")
+                    val = input("Do you want to add another st expression? [y or n]: ")
 		
                     if(val == 'n'):
                               w = 'c'
-                              val = input("Add objective expression [y or n]: ")
+                              print("\nAdd the objective expression: ")
                               enter_expression(tableau, w)
                               break
                     else:
