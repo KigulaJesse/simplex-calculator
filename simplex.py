@@ -148,9 +148,11 @@ tableau = []
 print("\n#--------WELCOME TO THE SIMPLEX CALCULATOR-----------#\n")
 print("Instructions")
 print("============")
-print("1. You may enter as many st expressions as you wish")
-print("2. When asked in the program, y = yes n = no to enter st expressions(constraints)")
+print("1. You may enter as many constraints expressions as you wish")
+print("2. When asked in the program, y = yes n = no to enter constraints expressions")
 print("3. You will be prompted to enter the objective expression last")
+print("4. Note the form of the equations at each step")
+print("4. Enter Ctrl + Z to exit the program")
 
 b_count = 1
 a_count = 1
@@ -158,17 +160,17 @@ c_count = 1
 
 while True:
           try: 
-                    val = input("\nDo you want to add another st expression?: [y or n]: ")
+                    val = input("\nDo you want to add a contsraint expression?: [y or n]: ")
 		
                     if(val == 'n'):
                               w = 'c'
-                              print("\nAdd the objective expression where the ci's are the coefficients of x in the form: ")
+                              print("\nAdd the objective expression where the ci's are the coefficients of the decision variables in the form: ")
                               print("Z = (ci)X1 + (ci2)X2 + (ci3)X3\n")
                               enter_expression(tableau, w)
                               break
                     else:
                               print("Enter expression where the a's are the coefficients of the x in the form:")
-                              print("(a1)X1 + (a2)X2 + (a3)X3 = bi\n")
+                              print("(a1)X1 + (a2)X2 + (a3)X3 <= bi\n")
                               w = 'a'
                               enter_expression(tableau, w)
           except:
@@ -189,4 +191,3 @@ while(value == 1):
 
           
           
-
