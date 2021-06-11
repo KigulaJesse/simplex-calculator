@@ -90,7 +90,24 @@ def Simplex(tableau, w):
           #new tableau is where the new tableau at end of this function will be stored
           #start by copying and pasting the tableau in new tableau
           new_tableau = tableau.copy()
+          tableau_print = [['x1','x2','x3']]
+          t = 0
+          m = 1
+          for i in tableau[0]:
+                    if t <= 2:
+                              t += 1
+                              continue
+                    else:
+                              s_column = "s" + str(m)
+                              t += 1
+                              m += 1
+                              tableau_print[0].append(s_column)
 
+                              if t == (len(tableau[0]) - 2):
+                                        break
+          tableau_print[0].append("z")
+          tableau_print[0].append("b")
+           
           #call the is_optimal function.
           #EITHER 
           #         index position e.g (0, 1, 2) of column 
@@ -111,7 +128,7 @@ def Simplex(tableau, w):
 
                     z = 0
                     for i in cols:
-                              if (z == 3):
+                              if z == (len(cols)-1):
                                         break
                               y = 0
                               count_0s = 0
@@ -132,15 +149,20 @@ def Simplex(tableau, w):
                               else:
                                         solution.append(0)
 
-                    solution.append(cols[-1][-1])
                     print("\nThe solution is optimal when")
                     g = 1
+                    k = 1
                     for f in solution:
-                              if g == len(solution):
-                                        print("z = " + str(f)) 
-                                        break
-                              print("x"+str(g)+" = " + str(f))
-                              g += 1
+                              if g <= 3:          
+                                        print("ci"+str(g)+" = " + str(f))
+                                        g += 1
+                              elif g < len(solution):
+                                        print("s"+str(k)+" = " + str(f))
+                                        k += 1
+                                        g += 1
+                              else:
+                                        print("z = " + str(f))
+
                     return -1
           #else
           else:
@@ -175,8 +197,15 @@ def Simplex(tableau, w):
                               z = z + 1
                     print("\n")
                     print("tableau[" + str(w) + "]")
-                    for row in new_tableau:
-                              print(row)
+                    for i in new_tableau:
+                              tableau_print.append(i)
+                    
+                    s = [[str(e) for e in row] for row in tableau_print]
+                    lens = [max(map(len, col)) for col in zip(*s)]
+                    fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+                    table = [fmt.format(*row) for row in s]
+                    print ("\n".join(table))
+                    
                     return 1
           
 

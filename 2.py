@@ -1,8 +1,8 @@
 
 tableau = [
-          [1.0, -2.0, 0.0, 1.0, 0.0, 0.0, 2.0],
-          [0.0,  5.0, 0.0, 0.0, 1.0, 0.0, 8.0],
-          [0.0, 30.0, 0.0, 0.0, 8.0, 1.0, 64.0]
+          [0.0, -2.0, 1.0, 1.0, -1.0, 0.0, 2.0],
+          [1.0,  5.0, 1.0, 0.0, 1.0, 0.0, 8.0],
+          [0.0, 30.0, 1.0, 0.0, 8.0, 1.0, 64.0]
 ]
 
 cols = []
@@ -13,7 +13,7 @@ solution = []
 
 z = 0
 for i in cols:
-          if (z == 3):
+          if z == (len(cols)-1):
                     break
           print(i)
           y = 0
@@ -37,8 +37,23 @@ for i in cols:
           else:
                     solution.append(0)
 
-solution.append(cols[-1][-1])
+#solution.append(cols[-1][-1])
 print("\n")
 print(solution)
+
+g = 1
+k = 1
+                    
           
+for f in solution:
+          if g <= 3:          
+                    print("ci"+str(g)+" = " + str(f))
+                    g += 1
+          elif g < len(solution):
+                    print("s"+str(k)+" = " + str(f))
+                    k += 1
+                    g += 1
+          else:
+                    print("z = " + str(f))
+                    
           
