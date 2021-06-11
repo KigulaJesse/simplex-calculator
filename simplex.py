@@ -10,19 +10,24 @@ def enter_expression(tableau, w):
           for i in range(1,4,1):
                     if w == 'a':
                               a = input("Input "+ w +str(a_count)+" = ")
+                              a = int(a)
                               a_count += 1
                     elif ((w == 'c') & (c_count == 1)) :
                               a = input("Input "+ w + "i" +" = ")
+                              a = -(int(a))
                               c_count += 1
                     else:
                               a = input("Input "+ w + "i" + str(c_count)+" = ")
+                              a = -(int(a))
                               c_count += 1
-                    col.append(int(a))
+                    col.append(a)
                     
           if b_count == 1:
                     b = input("Input bi = ")
                     b_count += 1
-
+          elif w == 'c':
+                    b = 0
+                    b_count += 1
           else:
                     b = input("Input bi"+str(b_count)+" = ")
                     b_count += 1
@@ -98,7 +103,7 @@ def Simplex(tableau, w):
           #if optimal == -1, the solution had no negatives in its objective function
           # it is optimal 
           if optimal == -1:
-                    print("The solution is optimal")
+                    print("\nThe solution is optimal")
                     return -1
           #else
           else:
@@ -132,8 +137,9 @@ def Simplex(tableau, w):
                                         x += 1 
                               z = z + 1
                     print("\n")
-                    print("step[" + str(w) + "]")
-                    print(new_tableau)
+                    print("tableau[" + str(w) + "]")
+                    for row in new_tableau:
+                              print(row)
                     return 1
           
 
@@ -146,22 +152,23 @@ print("1. You may enter as many st expressions as you wish")
 print("2. When asked in the program, y = yes n = no to enter st expressions(constraints)")
 print("3. You will be prompted to enter the objective expression last")
 
-print("\n")
-
 b_count = 1
 a_count = 1
 c_count = 1 
 
 while True:
           try: 
-                    val = input("Do you want to add another st expression? [y or n]: ")
+                    val = input("\nDo you want to add another st expression?: [y or n]: ")
 		
                     if(val == 'n'):
                               w = 'c'
-                              print("\nAdd the objective expression: ")
+                              print("\nAdd the objective expression where the ci's are the coefficients of x in the form: ")
+                              print("Z = (ci)X1 + (ci2)X2 + (ci3)X3\n")
                               enter_expression(tableau, w)
                               break
                     else:
+                              print("Enter expression where the a's are the coefficients of the x in the form:")
+                              print("(a1)X1 + (a2)X2 + (a3)X3 = bi\n")
                               w = 'a'
                               enter_expression(tableau, w)
           except:
