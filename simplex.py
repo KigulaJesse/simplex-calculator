@@ -5,8 +5,6 @@ def enter_expression(tableau, w):
           global b_count
           global c_count
 
-          
-
           for i in range(1,4,1):
                     if w == 'a':
                               a = input("Input "+ w +str(a_count)+" = ")
@@ -247,6 +245,35 @@ while True:
                     c_count = 1 
                     tableau = []
 
+print("Original tableau")
+
+tableau_print1 = [['x1','x2','x3']]
+t = 0
+m = 1
+for i in tableau[0]:
+          if t <= 2:
+                    t += 1
+                    continue
+          else:
+                    s_column = "s" + str(m)
+                    t += 1
+                    m += 1
+                    tableau_print1[0].append(s_column)
+
+                    if t == (len(tableau[0]) - 2):
+                              break
+tableau_print1[0].append("z")
+tableau_print1[0].append("b")
+for i in tableau:
+          tableau_print1.append(i)
+                    
+                    
+s = [[str(e) for e in row] for row in tableau_print1]
+lens = [max(map(len, col)) for col in zip(*s)]
+fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
+table = [fmt.format(*row) for row in s]
+print ("\n".join(table))
+                    
                     
 w = 1
 value = 1
