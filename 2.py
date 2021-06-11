@@ -1,82 +1,44 @@
-tableau = []
 
-print("\n#--------WELCOME TO THE SIMPLEX CALCULATOR-----------#\n")
-print("Instructions")
-print("============")
-print("1. The  LAST expression entered is the objective expression")
-print("2. You may enter as many expressions as you wish")
-print("3. When asked in the program, y = yes n = no")
-print("\n")
+tableau = [
+          [1.0, -2.0, 0.0, 1.0, 0.0, 0.0, 2.0],
+          [0.0,  5.0, 0.0, 0.0, 1.0, 0.0, 8.0],
+          [0.0, 30.0, 0.0, 0.0, 8.0, 1.0, 64.0]
+]
 
-def enter_expression(tableau, w):
-          col = []
-          global a_count
-          global b_count
-          global c_count
+cols = []
+for x in range(0,len(tableau[0]),1):
+         cols.append([i[x] for i in tableau])
 
-          
+solution = []
 
-          for i in range(1,4,1):
-                    if w == 'a':
-                              a = input("Input "+ w +str(a_count)+" = ")
-                              a_count += 1
-                    elif ((w == 'c') & (c_count == 1)) :
-                              a = input("Input "+ w + "i" +" = ")
-                              c_count += 1
-                    else:
-                              a = input("Input "+ w + "i" + str(c_count)+" = ")
-                              c_count += 1
-                    col.append(int(a))
+z = 0
+for i in cols:
+          if (z == 3):
+                    break
+          print(i)
+          y = 0
+          count_0s = 0
+          count_1s = 0
+          for p in i:
                     
-          if b_count == 1:
-                    b = input("Input bi = ")
-                    b_count += 1
+                    if p == 1:
+                              print(p)
+                              print(y)
+                              col = y
+                              count_1s += 1
+                    if p == 0:
+                              count_0s += 1
+                    y += 1
 
+          z += 1
+
+          if (count_0s == (len(i) - 1)) & (count_1s == 1):
+                    solution.append(cols[-1][col])
           else:
-                    b = input("Input bi"+str(b_count)+" = ")
-                    b_count += 1
+                    solution.append(0)
+
+solution.append(cols[-1][-1])
+print("\n")
+print(solution)
           
-          if len(tableau) >= 1:
-                    g = 0
-                    for i in tableau:
-                              last = tableau[g][-1]
-                              tableau[g][-1] = (0)
-                              tableau[g].append(last)
-                              g += 1
-                              col.append(0)
-                    col.append(1)
-                    col.append(int(b))
-                    tableau.append(col)
-
-          else: 
-                    col.append(1)
-                    col.append(int(b))
-                    tableau.append(col)
-
-b_count = 1
-a_count = 1
-c_count = 1 
-
-while True:
-          try: 
-                    val = input("Add another st expression [y or n]: ")
-		
-                    if(val == 'n'):
-                              w = 'c'
-                              val = input("Add objective expression [y or n]: ")
-                              enter_expression(tableau, w)
-                              break
-                    else:
-                              w = 'a'
-                              enter_expression(tableau, w)
-          except ValueError as e:
-                    print("\n*****WRONG INPUT*****")
-                    print("      start afresh    \n")
-                    b_count = 1
-                    a_count = 1
-                    c_count = 1 
-                    tableau = []
-
-
-                    
-print (tableau)
+          

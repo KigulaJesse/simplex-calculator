@@ -27,8 +27,9 @@ def determine_pivot_row(smallest_column,beta_column_minus_optimal):
 
 
 #st
-a = [[1, 3, 2, 1, 0, 0],
-     [1, 5, 1, 0, 1, 0]
+a = [[1, 3, 2, 1, 0, 0, 10],
+     [1, 5, 1, 0, 1, 0, 8]
+     [-8, -10, -7, 0, 0, 1, 0]
 ]
     
 #maximise function

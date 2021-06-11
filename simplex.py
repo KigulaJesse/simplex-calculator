@@ -103,7 +103,44 @@ def Simplex(tableau, w):
           #if optimal == -1, the solution had no negatives in its objective function
           # it is optimal 
           if optimal == -1:
-                    print("\nThe solution is optimal")
+                    cols = []
+                    for x in range(0,len(tableau[0]),1):
+                              cols.append([i[x] for i in tableau])
+
+                    solution = []
+
+                    z = 0
+                    for i in cols:
+                              if (z == 3):
+                                        break
+                              y = 0
+                              count_0s = 0
+                              count_1s = 0
+                              for p in i:
+                                        
+                                        if p == 1:
+                                                  col = y
+                                                  count_1s += 1
+                                        if p == 0:
+                                                  count_0s += 1
+                                        y += 1
+
+                              z += 1
+
+                              if (count_0s == (len(i) - 1)) & (count_1s == 1):
+                                        solution.append(cols[-1][col])
+                              else:
+                                        solution.append(0)
+
+                    solution.append(cols[-1][-1])
+                    print("\nThe solution is optimal when")
+                    g = 1
+                    for f in solution:
+                              if g == len(solution):
+                                        print("z = " + str(f)) 
+                                        break
+                              print("x"+str(g)+" = " + str(f))
+                              g += 1
                     return -1
           #else
           else:
