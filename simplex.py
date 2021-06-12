@@ -175,6 +175,11 @@ def Simplex(tableau, w):
                     chosen_row = determine_pivot_row(optimal,st_rows_minus_maximise)
                     smallest_value = tableau[chosen_row][optimal]
 
+                    print("=======================================")
+                    print("pivot column = " + str(smallest_column))
+                    print("pivot row = " + str(tableau[chosen_row]))
+
+
                     #----FORMULATING THE NEW TABLEAU------------#
                     
                     z = 0
@@ -193,6 +198,9 @@ def Simplex(tableau, w):
                                         new_tableau[z][x] = new_tableau_value_calc(smallest_column[z], new_tableau[chosen_row][x],tableau[z][x])
                                         x += 1 
                               z = z + 1
+
+
+                    
                     print("\n")
                     print("tableau[" + str(w) + "]")
                     for i in new_tableau:
@@ -203,6 +211,8 @@ def Simplex(tableau, w):
                     fmt = '\t'.join('{{:{}}}'.format(x) for x in lens)
                     table = [fmt.format(*row) for row in s]
                     print ("\n".join(table))
+
+                    
                     
                     return 1
           
